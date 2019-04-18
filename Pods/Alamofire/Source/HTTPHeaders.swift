@@ -413,7 +413,7 @@ extension Collection where Element == String {
 
 extension URLRequest {
     /// Returns `allHTTPHeaderFields` as `HTTPHeaders`.
-    public var headers: HTTPHeaders {
+    public var httpHeaders: HTTPHeaders {
         get { return allHTTPHeaderFields.map(HTTPHeaders.init) ?? HTTPHeaders() }
         set { allHTTPHeaderFields = newValue.dictionary }
     }
@@ -421,14 +421,14 @@ extension URLRequest {
 
 extension HTTPURLResponse {
     /// Returns `allHeaderFields` as `HTTPHeaders`.
-    public var headers: HTTPHeaders {
+    public var httpHeaders: HTTPHeaders {
         return (allHeaderFields as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders()
     }
 }
 
 extension URLSessionConfiguration {
     /// Returns `httpAdditionalHeaders` as `HTTPHeaders`.
-    public var headers: HTTPHeaders {
+    public var httpHeaders: HTTPHeaders {
         get { return (httpAdditionalHeaders as? [String: String]).map(HTTPHeaders.init) ?? HTTPHeaders() }
         set { httpAdditionalHeaders = newValue.dictionary }
     }

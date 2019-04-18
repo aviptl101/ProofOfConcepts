@@ -31,7 +31,7 @@ extension Request {
     fileprivate typealias ErrorReason = AFError.ResponseValidationFailureReason
 
     /// Used to represent whether a validation succeeded or failed.
-    public typealias ValidationResult = AFResult<Void>
+    public typealias ValidationResult = Result<Void>
 
     fileprivate struct MIMEType {
         let type: String
@@ -67,7 +67,7 @@ extension Request {
 
     // MARK: Properties
 
-    fileprivate var acceptableStatusCodes: Range<Int> { return 200..<300 }
+    fileprivate var acceptableStatusCodes: [Int] { return Array(200..<300) }
 
     fileprivate var acceptableContentTypes: [String] {
         if let accept = request?.value(forHTTPHeaderField: "Accept") {
@@ -184,10 +184,7 @@ extension DataRequest {
     /// - returns: The request.
     @discardableResult
     public func validate() -> Self {
-        let contentTypes: () -> [String] = { [unowned self] in
-            return self.acceptableContentTypes
-        }
-        return validate(statusCode: acceptableStatusCodes).validate(contentType: contentTypes())
+        return validate(statusCode: self.acceptableStatusCodes).validate(contentType: self.acceptableContentTypes)
     }
 }
 
@@ -247,9 +244,6 @@ extension DownloadRequest {
     /// - returns: The request.
     @discardableResult
     public func validate() -> Self {
-        let contentTypes = { [unowned self] in
-            return self.acceptableContentTypes
-        }
-        return validate(statusCode: acceptableStatusCodes).validate(contentType: contentTypes())
+        return validate(statusCode: self.acceptableStatusCodes).validate(contentType: self.acceptableContentTypes)
     }
 }
