@@ -19,3 +19,13 @@ struct Photo: Decodable {
         case imageUrl = "imageHref"
     }
 }
+
+struct PhotoList: Decodable {
+    let title: String
+    let photos: [Photo]
+    
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case photos = "rows"
+    }
+}
