@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import Alamofire
+
+class RequestManager {
+    static func fetchPhotos(completion: @escaping (Result<PhotoList>) -> Void) {
+
+    }
+}
