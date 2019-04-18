@@ -11,6 +11,6 @@ import Alamofire
 
 class RequestManager {
     static func fetchPhotos(completion: @escaping (Result<PhotoList>) -> Void) {
-
+        RequestPerformer.requestString(endPoint: .photos(page: 1), completion: completion)
     }
 }
