@@ -24,6 +24,9 @@ class RequestPerformer {
             switch response.result {
             case .success(let value):
                 print(value)
+                if let photoList = ResponseParser.parse(from: value) {
+                    completion(Result.success(photoList))
+                }
             case .failure(let error):
                 completion(Result.failure(error))
             }
