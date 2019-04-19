@@ -9,6 +9,25 @@
 import UIKit
 
 class PhotoCollectionViewController: UICollectionViewController {
+    
+    private let reuseIdentifier = "PhotoCell"
+    
+    private var  photosViewModel: PhotosViewModel?
+    
+    private let NoDataLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .title1)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.numberOfLines = 1
+        label.text = "No Data Available"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let refreshControl = UIRefreshControl()
+    
+    private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
 
     override func loadView() {
         let layout = UICollectionViewFlowLayout()
