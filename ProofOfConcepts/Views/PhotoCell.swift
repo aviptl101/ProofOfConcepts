@@ -43,9 +43,14 @@ class PhotoCell: UICollectionViewCell {
         return label
     }()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.configureCellView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder: ) has not been implemented")
     }
     
     func configureCellView() {
