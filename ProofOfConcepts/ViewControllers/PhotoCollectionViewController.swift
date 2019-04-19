@@ -62,6 +62,7 @@ class PhotoCollectionViewController: UICollectionViewController {
             .foregroundColor: UIColor.black,
             ]
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
+        self.refreshControl.addTarget(self, action: #selector(getPhotosList), for: .valueChanged)
         self.setupCollectionView()
         self.setupReachability()
         self.setAutolayoutConstraints()
