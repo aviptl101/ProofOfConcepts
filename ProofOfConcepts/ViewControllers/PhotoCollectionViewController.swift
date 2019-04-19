@@ -65,6 +65,10 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         self.collectionView.backgroundColor = .clear
         self.collectionView.refreshControl = self.refreshControl
+        self.collectionView.collectionViewLayout = PhotoCollectionViewLayout.self()
+        if let layout = collectionView?.collectionViewLayout as? PhotoCollectionViewLayout {
+            layout.delegate = self
+        }
         
         // Register cell classes
         self.collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -128,5 +132,15 @@ class PhotoCollectionViewController: UICollectionViewController {
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
         return cell
+    }
+}
+
+// MARK: PhotoCollectionViewLayout
+
+extension PhotoCollectionViewController: PhotoCollectionViewLayoutDelegate {
+    // Returns the data to be displayed
+    func getCollectionViewData(_ collectionView: UICollectionView) -> [Photo]? {
+        guard let photos = self.photosViewModel?.photos else { return nil }
+        return photos
     }
 }
