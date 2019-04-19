@@ -53,5 +53,18 @@ class PhotoCollectionViewController: UICollectionViewController {
             .foregroundColor: UIColor.black,
             ]
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
+        self.setAutolayoutConstraints()
+    }
+    
+    // MARK: Private Methods
+    
+    func setAutolayoutConstraints() {
+        // Autolayout constraints
+        self.view.addSubview(NoDataLabel)
+        self.NoDataLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.NoDataLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        self.activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 }
