@@ -40,4 +40,26 @@ class ProofOfConceptsTests: XCTestCase {
     func testCanInstantiateViewController() {
         XCTAssertNotNil(photoCollectionViewController)
     }
+    
+    func testCollectionViewIsNotNilAfterViewDidLoad() {
+        XCTAssertNotNil(photoCollectionViewController.collectionView)
+    }
+    
+    func testShouldSetCollectionViewDataSource() {
+        XCTAssertNotNil(photoCollectionViewController.collectionView.dataSource)
+    }
+    
+    func testConformsToCollectionViewDataSource() {
+        XCTAssertTrue(photoCollectionViewController.responds(to: #selector(photoCollectionViewController.collectionView(_:numberOfItemsInSection:))))
+        
+        XCTAssertTrue(photoCollectionViewController.responds(to: #selector(photoCollectionViewController.collectionView(_:cellForItemAt:))))
+    }
+    
+    func testShouldSetCollectionViewDelegate() {
+        XCTAssertNotNil(photoCollectionViewController.collectionView.delegate)
+    }
+    
+    func testConformsToCollectionViewDelegate() {
+        XCTAssert(photoCollectionViewController.conforms(to: UICollectionViewDelegate.self))
+    }
 }
