@@ -8,6 +8,13 @@
 
 import UIKit
 
-class PhotoCollectionViewLayout: UICollectionViewLayout {
+protocol PhotoCollectionViewLayoutDelegate: class {
+    // Method to ask the delegate for the Data to display
+    func getCollectionViewData(_ collectionView:UICollectionView) -> [Photo]?
+}
 
+class PhotoCollectionViewLayout: UICollectionViewLayout {
+    // PhotoCollectionView Layout Delegate
+    weak var delegate: PhotoCollectionViewLayoutDelegate!
+    
 }
