@@ -41,7 +41,49 @@ class PhotoCollectionViewLayout: UICollectionViewLayout {
     
     override func prepare() {
         cache.removeAll()
+        guard let collectionView = collectionView, self.delegate != nil else {
+            return
+        }
+        guard let photos = delegate.getCollectionViewData(collectionView) else { return }
+        // Pre-Calculates the X Offset for every column and adds an array to increment the currently max Y Offset for each column
+        let photoHeight: CGFloat = self.columnWidth
+        var numberOfColumns = Int((contentWidth - 4 * cellPadding) / columnWidth)
+        var cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns+1)
+        if cellPaddingX < 10 {
+            numberOfColumns -= 1
+            cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns+1)
+        }
+        var yOffset = [CGFloat]()
+        var xOffset = [CGFloat]()
+        for column in 0 ..< numberOfColumns {
+            xOffset.append(CGFloat(column) * columnWidth)
+            yOffset.append(0)
+        }
+        var column = 0
         
+        // Iterates through the list of items in the first section
+        for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
+            
+            let indexPath = IndexPath(item: item, section: 0)
+            
+            let titleLabelHeight = photos[indexPath.item].title?.height(constraintedWidth: columnWidth, font: Constants.Font.titleBold) ?? 0
+            let descriptionLabelHeight = photos[indexPath.item].description?.height(constraintedWidth: columnWidth, font: Constants.Font.body) ?? 0
+            
+            let height: CGFloat = photoHeight + titleLabelHeight + descriptionLabelHeight
+            let frame = CGRect(x: xOffset[column] + CGFloat(column + 1) * cellPaddingX, y: yOffset[column] + cellPadding, width: columnWidth, height: height)
+            
+            // Creates an UICollectionViewLayoutItem with the frame and add it to the cache
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = frame
+            cache.append(attributes)
+            // Updates the collection view content height
+            yOffset[column] = yOffset[column] + height + cellPadding + 5
+            let descendingYOffset = yOffset.sorted(by: >)
+            let maxY_Offset = descendingYOffset.first ?? 0
+            contentHeight = maxY_Offset + 50
+            
+            column = column < (numberOfColumns - 1) ? (column + 1) : 0
+        }
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
