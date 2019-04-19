@@ -6,7 +6,19 @@
 //  Copyright © 2019 Infosys. All rights reserved.
 //
 
+import UIKit
 import Foundation
+
+struct Constants {
+    struct Font {
+        static let body = UIFont.systemFont(ofSize: 15)
+        static let bodyBold = UIFont.boldSystemFont(ofSize: 15)
+        static let title = UIFont.systemFont(ofSize: 19)
+        static let titleBold = UIFont.boldSystemFont(ofSize: 19)
+        static let heading = UIFont.systemFont(ofSize: 23)
+        static let headingBold = UIFont.boldSystemFont(ofSize: 23)
+    }
+}
 
 struct ProductionServer {
     static let baseURL = "https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl"
