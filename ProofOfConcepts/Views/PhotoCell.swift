@@ -80,4 +80,11 @@ class PhotoCell: UITableViewCell {
         labelStackView.topAnchor.constraint(equalTo: self.cellImageView.bottomAnchor).isActive = true
         labelStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.cellImageView.image = nil
+        self.titleLabel.text = nil
+        self.descriptionLabel.text = nil
+    }
 }
