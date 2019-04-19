@@ -10,6 +10,9 @@ import UIKit
 import Foundation
 
 struct Constants {
+    static let photoWidth: CGFloat = 160
+    static let cellPadding: CGFloat = 10
+    
     struct Font {
         static let body = UIFont.systemFont(ofSize: 15)
         static let bodyBold = UIFont.boldSystemFont(ofSize: 15)

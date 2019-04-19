@@ -17,4 +17,29 @@ class PhotoCollectionViewLayout: UICollectionViewLayout {
     // PhotoCollectionView Layout Delegate
     weak var delegate: PhotoCollectionViewLayoutDelegate!
     
+    // Configurable properties
+    private var columnWidth: CGFloat = Constants.photoWidth
+    private var cellPadding: CGFloat = Constants.cellPadding
+    
+    // Array to keep a cache of attributes.
+    private var cache = [UICollectionViewLayoutAttributes]()
+    
+    // Content height and size
+    private var contentHeight: CGFloat = 0
+    
+    private var contentWidth: CGFloat {
+        guard let collectionView = collectionView else {
+            return 0
+        }
+        let insets = collectionView.contentInset
+        return collectionView.bounds.width - (insets.left + insets.right)
+    }
+    
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: contentWidth, height: contentHeight)
+    }
+    
+    override func prepare() {
+        cache.removeAll()
+    }
 }
