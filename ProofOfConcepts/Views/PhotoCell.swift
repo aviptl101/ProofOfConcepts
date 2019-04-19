@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PhotoCell: UITableViewCell {
     
@@ -79,6 +80,12 @@ class PhotoCell: UITableViewCell {
         labelStackView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
         labelStackView.topAnchor.constraint(equalTo: self.cellImageView.bottomAnchor).isActive = true
         labelStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+    }
+    
+    func configure(with photo: Photo) {
+        self.titleLabel.text = photo.title ?? ""
+        self.descriptionLabel.text = photo.description ?? ""
+        self.cellImageView.sd_setImage(with: URL(string: photo.imageUrl ?? ""), placeholderImage: UIImage(named: "place_holder.png"))
     }
     
     override func prepareForReuse() {
