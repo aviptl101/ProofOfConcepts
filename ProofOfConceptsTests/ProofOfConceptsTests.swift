@@ -36,18 +36,8 @@ class ProofOfConceptsTests: XCTestCase {
             }
         })
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-            photosViewModel.downloadPhotos(completion: { (result) in
-                switch result {
-                case true: XCTAssertNotNil(self.photosViewModel.photos)
-                case false: XCTFail()
-                }
-            })
-        }
+    
+    func testCanInstantiateViewController() {
+        XCTAssertNotNil(photoCollectionViewController)
     }
-
 }
