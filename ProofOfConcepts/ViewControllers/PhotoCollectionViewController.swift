@@ -53,10 +53,21 @@ class PhotoCollectionViewController: UICollectionViewController {
             .foregroundColor: UIColor.black,
             ]
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
+        self.setupCollectionView()
         self.setAutolayoutConstraints()
     }
     
     // MARK: Private Methods
+    
+    func setupCollectionView() {
+        self.collectionView.addSubview(self.activityIndicator)
+        self.collectionView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+        self.collectionView.backgroundColor = .clear
+        self.collectionView.refreshControl = self.refreshControl
+        
+        // Register cell classes
+        self.collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+    }
     
     func setAutolayoutConstraints() {
         // Autolayout constraints
