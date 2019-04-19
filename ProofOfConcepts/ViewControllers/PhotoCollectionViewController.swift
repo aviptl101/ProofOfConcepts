@@ -79,6 +79,38 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
+    func hideNoDataLabel() {
+        self.NoDataLabel.isHidden = true
+    }
+    
+    func showNoDataLabel() {
+        guard let photos = self.photosViewModel?.photos, photos.count > 0 else {
+            self.NoDataLabel.isHidden = false
+            return
+        }
+    }
+    
+    @objc func getPhotosList() {
+        self.activityIndicator.startAnimating()
+        self.hideNoDataLabel()
+        
+        self.photosViewModel = PhotosViewModel()
+        self.photosViewModel?.downloadPhotos(completion: { (result) in
+            self.refreshControl.endRefreshing()
+            self.activityIndicator.stopAnimating()
+            switch result {
+            case true:
+                self.hideNoDataLabel()
+                self.navigationItem.title = self.photosViewModel?.title
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case false:
+                self.showNoDataLabel()
+            }
+        })
+    }
+    
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
