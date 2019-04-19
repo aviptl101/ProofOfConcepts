@@ -6,6 +6,8 @@ target 'ProofOfConcepts' do
   use_frameworks!
 pod 'Alamofire', '~> 5.0.0.beta.1'
 pod 'SDWebImage', '~> 4.0'
+pod 'ReachabilitySwift'
+pod 'NotificationBannerSwift'
 
   # Pods for ProofOfConcepts
 

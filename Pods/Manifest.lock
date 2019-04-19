@@ -1,22 +1,38 @@
 PODS:
   - Alamofire (5.0.0-beta.5)
+  - MarqueeLabel/Swift (3.2.1)
+  - NotificationBannerSwift (2.0.1):
+    - MarqueeLabel/Swift (~> 3.2.0)
+    - SnapKit (~> 4.2.0)
+  - ReachabilitySwift (4.3.1)
   - SDWebImage (4.4.6):
     - SDWebImage/Core (= 4.4.6)
   - SDWebImage/Core (4.4.6)
+  - SnapKit (4.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.0.0.beta.1)
+  - NotificationBannerSwift
+  - ReachabilitySwift
   - SDWebImage (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - MarqueeLabel
+    - NotificationBannerSwift
+    - ReachabilitySwift
     - SDWebImage
+    - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: 9afb08f7f43efcc71c072374e720fcf67521317d
+  MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
+  NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 38c917adb5a1ef05443d45603d7ddf64415ca3ed
+PODFILE CHECKSUM: 590b4b212624cd3b072ba0aaa3f9f74396442930
 
 COCOAPODS: 1.5.3
