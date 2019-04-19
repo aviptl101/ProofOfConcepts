@@ -41,6 +41,7 @@ class PhotoCollectionViewLayout: UICollectionViewLayout {
     
     override func prepare() {
         cache.removeAll()
+        
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
