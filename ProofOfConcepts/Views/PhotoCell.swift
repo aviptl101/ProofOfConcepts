@@ -46,11 +46,38 @@ class PhotoCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configureCellView() {
+        self.layer.cornerRadius = 6
+        self.layer.masksToBounds = true
+        self.setAutoLayoutConstraints()
     }
-
+    
+    func setAutoLayoutConstraints() {
+        let labelStackView = UIStackView(arrangedSubviews: [self.titleLabel, self.descriptionLabel])
+        labelStackView.axis = .vertical
+        labelStackView.distribution = .fill
+        labelStackView.alignment = .center
+        labelStackView.spacing = 5
+        labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(self.cellImageView)
+        self.contentView.addSubview(labelStackView)
+        
+        // ImageView Autolayout Constraints
+        self.cellImageView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
+        self.cellImageView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
+        self.cellImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
+        self.cellImageView.widthAnchor.constraint(equalToConstant: 200)
+        self.cellImageView.heightAnchor.constraint(equalToConstant: 200)
+        self.cellImageView.setContentCompressionResistancePriority(.fittingSizeLevel, for: .vertical)
+        self.cellImageView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        
+        // Labels Autolayout Constraints
+        self.descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        self.titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        labelStackView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
+        labelStackView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor).isActive = true
+        labelStackView.topAnchor.constraint(equalTo: self.cellImageView.bottomAnchor).isActive = true
+        labelStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
+    }
 }
