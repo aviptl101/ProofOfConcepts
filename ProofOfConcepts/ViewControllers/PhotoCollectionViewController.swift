@@ -29,6 +29,14 @@ class PhotoCollectionViewController: UICollectionViewController {
     private let refreshControl = UIRefreshControl()
     
     private let activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+    
+    private let reachabilityManager = ReachabilityManager.sharedInstance
+    
+    private lazy var reachabilityBanner: NotificationBanner = {
+        let banner = NotificationBanner(title: "No Internet Connection", style: .danger)
+        banner.autoDismiss = false
+        return banner
+    }()
 
     override func loadView() {
         let layout = UICollectionViewFlowLayout()
