@@ -63,6 +63,7 @@ class PhotoCollectionViewController: UICollectionViewController {
             ]
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
         self.setupCollectionView()
+        self.setupReachability()
         self.setAutolayoutConstraints()
         self.getPhotosList()
     }
@@ -99,6 +100,23 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+    }
+    
+    func setupReachability() {
+        reachabilityManager.reachability.whenUnreachable = { [weak self] reachability in
+            guard let self = self else { return }
+            
+            self.reachabilityBanner.show(on: self.navigationController)
+            print("Not reachable")
+        }
+        
+        reachabilityManager.reachability.whenReachable = { [weak self] reachability in
+            guard let self = self else { return }
+            
+            self.getPhotosList()
+            self.reachabilityBanner.dismiss()
+            print("Reachable")
+        }
     }
     
     func hideNoDataLabel() {
