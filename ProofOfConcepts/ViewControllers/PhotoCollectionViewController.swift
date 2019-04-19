@@ -78,4 +78,22 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
+    
+    // MARK: UICollectionViewDataSource
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.photosViewModel?.photos?.count ?? 0
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCell
+        
+        // Configure the cell
+        guard let photo = self.photosViewModel?.photos?[indexPath.item] else { return cell }
+        
+        cell.configure(with: photo)
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        return cell
+    }
 }
