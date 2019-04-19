@@ -15,7 +15,12 @@ class ProofOfConceptsTests: XCTestCase {
     var photosViewModel: PhotosViewModel!
     
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        //get the ViewController we want to test from the storyboard (note the identifier is the id explicitly set in the identity inspector)
+        photoCollectionViewController = PhotoCollectionViewController()
+        photosViewModel = PhotosViewModel()
+        
+        //load view hierarchy
+        _ = photoCollectionViewController.view
     }
 
     override func tearDown() {
