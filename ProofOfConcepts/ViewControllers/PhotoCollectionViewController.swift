@@ -55,6 +55,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
         self.setupCollectionView()
         self.setAutolayoutConstraints()
+        self.getPhotosList()
     }
     
     // MARK: Private Methods
