@@ -67,6 +67,14 @@ class PhotoCollectionViewController: UICollectionViewController {
         self.getPhotosList()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if reachabilityManager.reachability.connection == .none {
+            self.reachabilityBanner.show(on: self.navigationController)
+        }
+    }
+    
     // MARK: Private Methods
     
     func setupCollectionView() {
