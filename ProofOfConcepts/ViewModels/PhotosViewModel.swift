@@ -9,7 +9,6 @@
 import Foundation
 
 class PhotosViewModel {
-    
     var title: String?
     var photos: [Photo]?
     
