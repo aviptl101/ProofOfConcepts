@@ -46,5 +46,12 @@ class PhotoCollectionViewController: UICollectionViewController {
             self.view.backgroundColor = UIColor(patternImage: patternImage)
         }
         self.collectionView.backgroundColor = .clear
+        self.activityIndicator.color = .white
+        let font = UIFont.preferredFont(forTextStyle: .caption1)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font,
+            .foregroundColor: UIColor.black,
+            ]
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
     }
 }
