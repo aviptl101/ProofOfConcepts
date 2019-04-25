@@ -8,6 +8,7 @@ pod 'Alamofire', '~> 5.0.0.beta.1'
 pod 'SDWebImage', '~> 4.0'
 pod 'ReachabilitySwift'
 pod 'NotificationBannerSwift'
+pod 'SwiftLint'
 
   # Pods for ProofOfConcepts
 
