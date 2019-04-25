@@ -29,17 +29,18 @@ class ProofOfConceptsTests: XCTestCase {
     }
     
     func testPhotosViewModel() {
+        let photosExpectation = expectation(description: "photos")
+        
         photosViewModel.downloadPhotos(completion: { (result) in
             switch result {
-            case true:
-                guard let photos = self.photosViewModel.photos else {
-                    XCTFail()
-                    return
-                }
-                XCTAssertNotNil(photos)
+            case true: photosExpectation.fulfill()
             case false: XCTFail()
             }
         })
+        
+        waitForExpectations(timeout: 1) { (error) in
+            XCTAssertNotNil(self.photosViewModel.photos)
+        }
     }
     
     func testCanInstantiateViewController() {
