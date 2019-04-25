@@ -17,7 +17,7 @@ class PhotosViewModel {
             switch result {
             case .success(let photoList):
                 self.title = photoList.title
-                //self.photos = photoList.photos
+                self.photos = photoList.photos
                 completion(true)
             case .failure(let error):
                 completion(false)

@@ -260,7 +260,6 @@
 				6EAAB2BC226893E400284C33 /* Frameworks */,
 				6EAAB2BD226893E400284C33 /* Resources */,
 				47EE9513E7E37F1501F54332 /* [CP] Embed Pods Frameworks */,
-				6E2DE0E92271A6D9006C16BE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -375,23 +374,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProofOfConcepts/Pods-ProofOfConcepts-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		6E2DE0E92271A6D9006C16BE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		8E7A4D3023B7C37E664EA279 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
