@@ -31,7 +31,12 @@ class ProofOfConceptsTests: XCTestCase {
     func testPhotosViewModel() {
         photosViewModel.downloadPhotos(completion: { (result) in
             switch result {
-            case true: XCTAssertNotNil(self.photosViewModel.photos)
+            case true:
+                guard let photos = self.photosViewModel.photos else {
+                    XCTFail()
+                    return
+                }
+                XCTAssertNotNil(photos)
             case false: XCTFail()
             }
         })
