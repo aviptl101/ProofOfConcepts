@@ -657,14 +657,14 @@ extension _DictionaryEncoder : SingleValueEncodingContainer {
 // MARK: - Concrete Value Representations
 extension _DictionaryEncoder {
     /// Returns the given value boxed in a container appropriate for pushing onto the container stack.
-    fileprivate func box(_ value: Bool)   -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: Int)    -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: Int8)   -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: Int16)  -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: Int32)  -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: Int64)  -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: UInt)   -> NSObject { return NSNumber(value: value) }
-    fileprivate func box(_ value: UInt8)  -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Bool) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Int) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Int8) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Int16) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Int32) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: Int64) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: UInt) -> NSObject { return NSNumber(value: value) }
+    fileprivate func box(_ value: UInt8) -> NSObject { return NSNumber(value: value) }
     fileprivate func box(_ value: UInt16) -> NSObject { return NSNumber(value: value) }
     fileprivate func box(_ value: UInt32) -> NSObject { return NSNumber(value: value) }
     fileprivate func box(_ value: UInt64) -> NSObject { return NSNumber(value: value) }
@@ -912,4 +912,3 @@ fileprivate class _DictionaryReferencingEncoder : _DictionaryEncoder {
         }
     }
 }
-

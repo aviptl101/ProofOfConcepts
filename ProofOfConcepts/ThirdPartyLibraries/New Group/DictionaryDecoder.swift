@@ -118,7 +118,7 @@ open class DictionaryDecoder {
             // Find the last non-underscore character
             var lastNonUnderscore = stringKey.index(before: stringKey.endIndex)
             while lastNonUnderscore > firstNonUnderscore && stringKey[lastNonUnderscore] == "_" {
-                stringKey.formIndex(before: &lastNonUnderscore);
+                stringKey.formIndex(before: &lastNonUnderscore)
             }
             
             let keyRange = firstNonUnderscore...lastNonUnderscore
@@ -435,8 +435,8 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
                 if let def = defaults[defaultKey] as? T {
                     return def
                 }
-                default:
-                    break
+            default:
+                break
             }
 
             throw notFoundError(key: key)

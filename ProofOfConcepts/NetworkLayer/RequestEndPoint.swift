@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-enum RequestEndPoint: URLRequestConvertible  {
+enum RequestEndPoint: URLRequestConvertible {
     
     case photos(page: Int)
     case searchPhoto(forTerm: String, page: Int)

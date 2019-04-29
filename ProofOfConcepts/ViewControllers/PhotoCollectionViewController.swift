@@ -59,7 +59,7 @@ class PhotoCollectionViewController: UICollectionViewController {
         let font = UIFont.preferredFont(forTextStyle: .caption1)
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.black
             ]
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: attributes)
         self.refreshControl.addTarget(self, action: #selector(getPhotosList), for: .valueChanged)

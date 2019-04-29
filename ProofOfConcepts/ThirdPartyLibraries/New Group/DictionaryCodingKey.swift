@@ -46,4 +46,3 @@ internal struct DictionaryCodingKey : CodingKey {
 
     internal static let `super` = DictionaryCodingKey(stringValue: "super")!
 }
-
