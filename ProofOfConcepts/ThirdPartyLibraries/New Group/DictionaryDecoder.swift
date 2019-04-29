@@ -289,7 +289,7 @@ fileprivate class _DictionaryDecoder : Decoder {
         }
         
         guard let topContainer = self.storage.topContainer as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: self.storage.topContainer)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: self.storage.topContainer)
         }
         
         let container = DictionaryCodingKeyedDecodingContainer<Key>(referencing: self, wrapping: topContainer)
@@ -304,7 +304,7 @@ fileprivate class _DictionaryDecoder : Decoder {
         }
         
         guard let topContainer = self.storage.topContainer as? [Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [Any].self, reality: self.storage.topContainer)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [Any].self, reality: self.storage.topContainer)
         }
         
         return _DictionaryUnkeyedDecodingContainer(referencing: self, wrapping: topContainer)
@@ -463,7 +463,7 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         }
         
         guard let dictionary = value as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
         }
         
         let container = DictionaryCodingKeyedDecodingContainer<NestedKey>(referencing: self.decoder, wrapping: dictionary)
@@ -481,7 +481,7 @@ fileprivate struct DictionaryCodingKeyedDecodingContainer<K : CodingKey> : Keyed
         }
         
         guard let array = value as? [Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [Any].self, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [Any].self, reality: value)
         }
         
         return _DictionaryUnkeyedDecodingContainer(referencing: self.decoder, wrapping: array)
@@ -807,7 +807,7 @@ fileprivate struct _DictionaryUnkeyedDecodingContainer : UnkeyedDecodingContaine
         }
         
         guard let dictionary = value as? [String : Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [String : Any].self, reality: value)
         }
         
         self.currentIndex += 1
@@ -833,7 +833,7 @@ fileprivate struct _DictionaryUnkeyedDecodingContainer : UnkeyedDecodingContaine
         }
         
         guard let array = value as? [Any] else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: [Any].self, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: [Any].self, reality: value)
         }
         
         self.currentIndex += 1
@@ -967,14 +967,14 @@ extension _DictionaryDecoder {
             
         }
         
-        throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+        throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
     }
     
     fileprivate func unbox(_ value: Any, as type: Int.Type) throws -> Int? {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let int = number.intValue
@@ -989,7 +989,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let int8 = number.int8Value
@@ -1004,7 +1004,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let int16 = number.int16Value
@@ -1019,7 +1019,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let int32 = number.int32Value
@@ -1034,7 +1034,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let int64 = number.int64Value
@@ -1049,7 +1049,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let uint = number.uintValue
@@ -1064,7 +1064,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let uint8 = number.uint8Value
@@ -1079,7 +1079,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let uint16 = number.uint16Value
@@ -1094,7 +1094,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let uint32 = number.uint32Value
@@ -1109,7 +1109,7 @@ extension _DictionaryDecoder {
         guard !(value is NSNull) else { return nil }
         
         guard let number = value as? NSNumber, number !== kCFBooleanTrue, number !== kCFBooleanFalse else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         let uint64 = number.uint64Value
@@ -1161,7 +1161,7 @@ extension _DictionaryDecoder {
             }
         }
         
-        throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+        throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
     }
     
     fileprivate func unbox(_ value: Any, as type: Double.Type) throws -> Double? {
@@ -1195,7 +1195,7 @@ extension _DictionaryDecoder {
             }
         }
         
-        throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+        throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
     }
     
     fileprivate func unbox(_ value: Any, as type: String.Type) throws -> String? {
@@ -1210,7 +1210,7 @@ extension _DictionaryDecoder {
         }
         
         guard let string = value as? String else {
-            throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+            throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
         }
         
         return string
@@ -1233,7 +1233,7 @@ extension _DictionaryDecoder {
             return UUID(uuidString: string)
         }
         
-        throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+        throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
     }
     
     fileprivate func unbox(_ value: Any, as type: Date.Type) throws -> Date? {
@@ -1291,7 +1291,7 @@ extension _DictionaryDecoder {
             
         case .base64:
             guard let string = value as? String else {
-                throw DecodingError._typeMismatch(at: self.codingPath, expectation: type, reality: value)
+                throw DecodingError.typeMismatch(at: self.codingPath, expectation: type, reality: value)
             }
             
             guard let data = Data(base64Encoded: string) else {
