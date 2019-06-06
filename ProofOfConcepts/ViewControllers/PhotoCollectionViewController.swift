@@ -13,9 +13,11 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     private let reuseIdentifier = "PhotoCell"
     
+    // ViewModel instance
     private var  photosViewModel: PhotosViewModel?
     
-    private let NoDataLabel: UILabel = {
+    // Label to display when no data availalable
+    private let noDataLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .title1)
         label.textColor = .white
@@ -95,9 +97,9 @@ class PhotoCollectionViewController: UICollectionViewController {
     
     func setAutolayoutConstraints() {
         // Autolayout constraints
-        self.view.addSubview(NoDataLabel)
-        self.NoDataLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        self.NoDataLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.view.addSubview(noDataLabel)
+        self.noDataLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        self.noDataLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         self.activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         self.activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -121,12 +123,12 @@ class PhotoCollectionViewController: UICollectionViewController {
     }
     
     func hideNoDataLabel() {
-        self.NoDataLabel.isHidden = true
+        self.noDataLabel.isHidden = true
     }
     
     func showNoDataLabel() {
         guard let photos = self.photosViewModel?.photos, photos.count > 0 else {
-            self.NoDataLabel.isHidden = false
+            self.noDataLabel.isHidden = false
             return
         }
     }
