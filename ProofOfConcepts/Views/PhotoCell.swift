@@ -13,7 +13,7 @@ class PhotoCell: UICollectionViewCell {
     
     private let cellImageView: UIImageView = {
         let view = UIImageView()
-        view.layer.cornerRadius = 6
+        view.layer.cornerRadius = Constants.cornerRadius
         view.layer.masksToBounds = true
         view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +54,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     func configureCellView() {
-        self.layer.cornerRadius = 6
+        self.layer.cornerRadius = Constants.cornerRadius
         self.layer.masksToBounds = true
         self.setAutoLayoutConstraints()
     }

@@ -47,11 +47,21 @@ class PhotoCollectionViewLayout: UICollectionViewLayout {
         guard let photos = delegate.getCollectionViewData(collectionView) else { return }
         // Pre-Calculates the X Offset for every column and adds an array to increment the currently max Y Offset for each column
         let photoHeight: CGFloat = self.columnWidth
+        
+        // Calculating numberOfColumns from the available screen width which depends on the orientation of the device
+        // Multiplying cellPadding with four to leave minimum space between columns
         var numberOfColumns = Int((contentWidth - 4 * cellPadding) / columnWidth)
-        var cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns+1)
-        if cellPaddingX < 10 {
+        
+        // Calculating cellPadding(space between columns) based on width and numberOfColumns
+        var cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns + 1)
+        
+        // Minimum CellPadding(space between columns) Required
+        let minCellPaddingX: CGFloat = 10.0
+        
+        // If available space between columns is less than 10 than reducing numberOfColumns by one
+        if cellPaddingX < minCellPaddingX {
             numberOfColumns -= 1
-            cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns+1)
+            cellPaddingX = (contentWidth - CGFloat(numberOfColumns * Int(columnWidth))) / CGFloat(numberOfColumns + 1)
         }
         var yOffset = [CGFloat]()
         var xOffset = [CGFloat]()
@@ -80,7 +90,9 @@ class PhotoCollectionViewLayout: UICollectionViewLayout {
             yOffset[column] = yOffset[column] + height + cellPadding + 5
             let descendingYOffset = yOffset.sorted(by: >)
             let maxY_Offset = descendingYOffset.first ?? 0
-            contentHeight = maxY_Offset + 50
+            // Top space to be left above the cells
+            let cellPaddingY: CGFloat = 50
+            contentHeight = maxY_Offset + cellPaddingY
             
             column = column < (numberOfColumns - 1) ? (column + 1) : 0
         }
