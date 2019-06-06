@@ -10,7 +10,7 @@ import XCTest
 @testable import ProofOfConcepts
 
 class ProofOfConceptsTests: XCTestCase {
-
+    
     var photoCollectionViewController: PhotoCollectionViewController!
     var photosViewModel: PhotosViewModel!
     
@@ -22,7 +22,7 @@ class ProofOfConceptsTests: XCTestCase {
         //load view hierarchy
         _ = photoCollectionViewController.view
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -38,7 +38,7 @@ class ProofOfConceptsTests: XCTestCase {
             }
         })
         
-        waitForExpectations(timeout: 1) { (error) in
+        waitForExpectations(timeout: 2) { (error) in
             XCTAssertNotNil(self.photosViewModel.photos)
         }
     }

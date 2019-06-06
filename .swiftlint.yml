@@ -1,0 +1,70 @@
+disabled_rules: # rule identifiers to exclude from running
+  - colon
+  - comma
+  - control_statement
+  - identifier_name
+  - empty_count
+  - line_length
+  - file_length
+  - whitespace
+  - vertical_whitespace
+  - trailing_whitespace
+  - private_over_fileprivate
+  - force_cast
+  - xctfail_message
+  - unused_closure_parameter
+  - redundant_discardable_let
+  - void_return
+  - todo
+  - redundant_void_return
+  - closure_parameter_position
+opt_in_rules: # some rules are only opt-in
+  - empty_count
+  # Find all the available rules by running:
+  # swiftlint rules
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  - Source/*/ExcludedFile.swift # Exclude files with a wildcard
+analyzer_rules: # Rules run by `swiftlint analyze` (experimental)
+  - explicit_self
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly
+force_try:
+  severity: warning # explicitly
+# rules that have both warning and error levels, can set just the warning level
+# implicitly
+# they can set both implicitly with an array
+type_body_length:
+  - 300 # warning
+  - 400 # error
+# or they can set both explicitly
+file_length:
+  warning: 500
+  error: 2000
+# white_space rules
+  vertical_whitespace_opening_braces:
+    included: ".*.swift"
+    regex: '[{(\[][ \t]*\n[ \t]*\n'
+    name: "Vertical Whitespace after Opening Braces"
+    message: "Don't include vertical whitespace (empty line) after opening braces."
+    severity: warning
+  vertical_whitespace_closing_braces:
+    included: ".*.swift"
+    regex: '\n[ \t]*\n[ \t]*[)}\]]'
+    name: "Vertical Whitespace before Closing Braces"
+    message: "Don't include vertical whitespace (empty line) before closing braces."
+    severity: warning
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+type_name:
+  min_length: 1 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: iPhone # excluded via string
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji, sonarqube, markdown)
