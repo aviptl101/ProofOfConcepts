@@ -136,7 +136,6 @@ class PhotoCollectionViewController: UICollectionViewController {
     @objc func getPhotosList() {
         self.activityIndicator.startAnimating()
         self.hideNoDataLabel()
-        
         self.photosViewModel = PhotosViewModel()
         self.photosViewModel?.downloadPhotos(completion: { (result) in
             self.refreshControl.endRefreshing()

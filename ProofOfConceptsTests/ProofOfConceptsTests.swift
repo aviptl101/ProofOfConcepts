@@ -43,6 +43,27 @@ class ProofOfConceptsTests: XCTestCase {
         }
     }
     
+    func testCollectionViewImagesNames() {
+        let photosExpectation = expectation(description: "photos")
+        let imagesNames = ["Beavers", "Flag", "Transportation", "Hockey Night in Canada", "Eh", "Housing", "Public Shame", "", "Space Program", "Meese", "Geography", "Kittens...", "Mounties", "Language"]
+
+        photosViewModel.downloadPhotos(completion: { (result) in
+            switch result {
+            case true: guard let photos = self.photosViewModel.photos else { return }
+            for index in 0...imagesNames.count - 1 {
+                let imageName = photos[index].title ?? ""
+                XCTAssertEqual(imagesNames[index], imageName, "Image should be matching")
+            }
+            photosExpectation.fulfill()
+            case false: XCTFail()
+            }
+        })
+        
+        waitForExpectations(timeout: 2) { (error) in
+            XCTAssertNotNil(self.photosViewModel.photos)
+        }
+    }
+    
     func testCanInstantiateViewController() {
         XCTAssertNotNil(photoCollectionViewController)
     }
